@@ -9,9 +9,9 @@ import java.sql.Statement;
 public class SingletonConexao {
     private Connection connect;
     private String driver = "com.mysql.cj.jdbc.Driver";
-    private String local = "jdbc:mysql://localhost/";
+    private String local = "jdbc:mysql://guizera.mysql.database.azure.com:3306/";
     private String banco = "tcc";
-    private String usuario = "root";
+    private String usuario = "gui";
     private String senha = "Fifa2015U";
     private String erro="";
     private static SingletonConexao conexao;
