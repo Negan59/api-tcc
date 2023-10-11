@@ -49,5 +49,5 @@ jobs:
         with:
           app-name: 'TCC-guilherme'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_1B6A09952B8F4EA59C36318768EDD975 }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_973AC050DC9D4A8D8371275A531D5E6D }}
           package: '*.jar'
