@@ -27,7 +27,7 @@ public class DAOPaciente {
 
             SingletonConexao con = SingletonConexao.getConexao();
             boolean flag = con.manipular(sql);
-            System.out.println(sql);
+            con.fecharConexao();
             return flag;
         } catch (Exception e) {
             e.printStackTrace();
@@ -58,6 +58,7 @@ public class DAOPaciente {
 
             SingletonConexao con = SingletonConexao.getConexao();
             boolean flag = con.manipular(sql);
+            con.fecharConexao();
             return flag;
         } catch (Exception e) {
             e.printStackTrace();
@@ -71,6 +72,7 @@ public class DAOPaciente {
             
             SingletonConexao con = SingletonConexao.getConexao();
             boolean flag = con.manipular(sql);
+            con.fecharConexao();
             return flag;
         } catch (Exception e) {
             e.printStackTrace();
@@ -100,6 +102,7 @@ public class DAOPaciente {
                 paciente.setAltura(rs.getDouble("altura"));
                 paciente.setPeso(rs.getDouble("peso"));
                 paciente.setFoto(rs.getString("foto"));
+                con.fecharConexao();
                 return paciente;
             }
 
@@ -113,11 +116,11 @@ public class DAOPaciente {
 
     public ArrayList<Paciente> buscarTodos() {
         ArrayList<Paciente> pacientes = new ArrayList<>();
-
+        SingletonConexao con = SingletonConexao.getConexao();
         try {
             String sql = "SELECT * FROM paciente ORDER BY nome ASC";
             
-            SingletonConexao con = SingletonConexao.getConexao();
+            
             ResultSet rs = con.consultar(sql);
 
             while (rs.next()) {
@@ -142,17 +145,17 @@ public class DAOPaciente {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
+        con.fecharConexao();
         return pacientes;
     }
 
      public ArrayList<Paciente> buscarTodosLimite(int inicio,int fim) {
         ArrayList<Paciente> pacientes = new ArrayList<>();
-
+        SingletonConexao con = SingletonConexao.getConexao();
         try {
             String sql = "SELECT * FROM paciente ORDER BY nome ASC "+"limit "+inicio+","+fim;
             
-            SingletonConexao con = SingletonConexao.getConexao();
+            
             ResultSet rs = con.consultar(sql);
 
             while (rs.next()) {
@@ -177,17 +180,17 @@ public class DAOPaciente {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
+        con.fecharConexao();
         return pacientes;
     }
 
     public ArrayList<Paciente> buscarPorNome(String nome) {
         ArrayList<Paciente> pacientes = new ArrayList<>();
-
+        SingletonConexao con = SingletonConexao.getConexao();
         try {
             String sql = "SELECT * FROM paciente WHERE nome LIKE '%" + nome + "%' ORDER BY nome ASC";
             
-            SingletonConexao con = SingletonConexao.getConexao();
+            
             ResultSet rs = con.consultar(sql);
 
             while (rs.next()) {
@@ -212,7 +215,7 @@ public class DAOPaciente {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
+        con.fecharConexao();
         return pacientes;
     }
 
@@ -225,6 +228,7 @@ public class DAOPaciente {
             System.out.println(sql);
             if (rs.next()) {
                 qtd = rs.getInt("qtd");
+                con.fecharConexao();
                 return qtd;
             }
 

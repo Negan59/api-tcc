@@ -20,6 +20,7 @@ public class DAOMonitor {
             sql = sql.replace("$5", u.getSenha());
             SingletonConexao con = SingletonConexao.getConexao();
             boolean flag = con.manipular(sql);
+            con.fecharConexao();
             return flag;
             
         } catch (Exception e) {
@@ -43,6 +44,7 @@ public class DAOMonitor {
             SingletonConexao con = SingletonConexao.getConexao();
             boolean flag = con.manipular(sql);
             System.out.println(sql);
+            con.fecharConexao();
             return flag;
         } catch (Exception e) {
             e.printStackTrace();
@@ -57,6 +59,7 @@ public class DAOMonitor {
             
             SingletonConexao con = SingletonConexao.getConexao();
             boolean flag = con.manipular(sql);
+            con.fecharConexao();
             return flag;
         } catch (Exception e) {
             e.printStackTrace();
@@ -81,6 +84,7 @@ public class DAOMonitor {
                 monitor.setCpf(rs.getString("cpf"));
                 monitor.setSenha(rs.getString("senha"));
                 monitor.setNivel(rs.getInt("nivel"));
+                con.fecharConexao();
                 return monitor;
             }
 
@@ -113,7 +117,7 @@ public class DAOMonitor {
                 monitor.setNivel(rs.getInt("nivel"));
                 monitores.add(monitor);
             }
-
+            con.fecharConexao();
             rs.close();
         } catch (Exception e) {
             e.printStackTrace();
@@ -142,7 +146,7 @@ public class DAOMonitor {
                 monitor.setNivel(rs.getInt("nivel"));
                 monitores.add(monitor);
             }
-
+            con.fecharConexao();
             rs.close();
         } catch (Exception e) {
             e.printStackTrace();
