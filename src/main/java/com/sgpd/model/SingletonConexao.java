@@ -103,7 +103,7 @@ public class SingletonConexao {
         try
         {
         //connect.commit();
-        connect.close();
+        conexao =null;
         }
         catch(Exception e)
         {
