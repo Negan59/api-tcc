@@ -103,7 +103,7 @@ public class PacienteController {
             String nomeArquivo = "foto_" + paciente.getNome().replaceAll("\\s+", "_") + "_" + uniqueHash + extensao;
 
             // Caminho absoluto para a pasta "arquivos" (altere para o seu caminho desejado)
-            String caminhoPasta = "../frontend/public/arquivos/";
+            String caminhoPasta = "./frontend/public/arquivos/";
 
 
             File pastaArquivos = new File(caminhoPasta);
