@@ -105,7 +105,7 @@ public class PacienteController {
             // Caminho absoluto para a pasta "arquivos" (altere para o seu caminho desejado)
             String caminhoPasta = "../frontend/public/arquivos/";
 
-            // Certifique-se de que a pasta exista ou crie-a se não existir
+
             File pastaArquivos = new File(caminhoPasta);
             if (!pastaArquivos.exists()) {
                 if (!pastaArquivos.mkdirs()) {
