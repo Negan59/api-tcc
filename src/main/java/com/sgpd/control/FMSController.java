@@ -1,5 +1,7 @@
 package com.sgpd.control;
 
+import java.util.ArrayList;
+
 import com.sgpd.model.Erro;
 import com.sgpd.model.FMS;
 import com.sgpd.model.SingletonConexao;
@@ -15,7 +17,7 @@ public class FMSController {
             return new Erro("Questão inválida", true, 400);
         }
 
-        if (fms.getNivel() <= 0 || fms.getNivel() > 5) {
+        if (fms.getNivel() <= 0 || fms.getNivel() > 6) {
             return new Erro("Nível inválido", true, 400);
         }
 
@@ -61,7 +63,7 @@ public class FMSController {
         }
     }
 
-    public FMS buscar(int id){
+    public ArrayList<FMS> buscar(int id){
         return new FMS().buscar(id);
     }
 }

@@ -1,5 +1,7 @@
 package com.sgpd.model;
 
+import java.util.ArrayList;
+
 import com.sgpd.dao.DAOFMS;
 
 public class FMS {
@@ -60,7 +62,7 @@ public class FMS {
         }
     }
 
-    public FMS buscar(int id){
+    public ArrayList<FMS> buscar(int id){
         DAOFMS dao = new DAOFMS();
         return dao.buscar(id);
     }

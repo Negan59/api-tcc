@@ -1,6 +1,7 @@
 package com.sgpd.dao;
 
 import java.sql.ResultSet;
+import java.util.ArrayList;
 
 import com.sgpd.model.FMS;
 import com.sgpd.model.Paciente;
@@ -16,6 +17,7 @@ public class DAOFMS {
                      .replace("$4", fms.getDescricao());
 
             SingletonConexao con = SingletonConexao.getConexao();
+            System.out.println(sql);
             boolean flag = con.manipular(sql);
             con.fecharConexao();
             return flag;
@@ -39,15 +41,18 @@ public class DAOFMS {
     }
 }
 
-public FMS buscar(int id) {
+public ArrayList<FMS> buscar(int id) {
     try {
-        String sql = "SELECT * FROM fms WHERE id = " + id;
+        ArrayList<FMS> lista = new ArrayList<>();
+        String sql = "SELECT * FROM fms WHERE paciente_id = " + id;
 
         SingletonConexao con = SingletonConexao.getConexao();
         ResultSet rs = con.consultar(sql);
 
         FMS fms = null;
-        if (rs.next()) {
+
+
+        while (rs.next()) {
             // Preencher o objeto FMS com os dados do ResultSet
             fms = new FMS();
             Paciente paciente = new Paciente();
@@ -56,10 +61,11 @@ public FMS buscar(int id) {
             fms.setQuestao(rs.getInt("questao"));
             fms.setNivel(rs.getInt("nivel"));
             fms.setDescricao(rs.getString("descricao"));
+            lista.add(fms);
         }
 
         con.fecharConexao();
-        return fms;
+        return lista;
     } catch (Exception e) {
         e.printStackTrace();
         return null;
