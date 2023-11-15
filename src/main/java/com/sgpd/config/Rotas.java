@@ -7,9 +7,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.sgpd.control.FMSController;
 import com.sgpd.control.MonitorController;
 import com.sgpd.control.PacienteController;
 import com.sgpd.model.Erro;
+import com.sgpd.model.FMS;
 import com.sgpd.model.Monitor;
 import com.sgpd.model.Paciente;
 
@@ -95,4 +97,19 @@ public class Rotas {
         return new ResponseEntity<>(new PacienteController().buscarPorNome(nome), HttpStatus.OK);
     }
 
+    //fms
+    @PostMapping("/fms")
+    public ResponseEntity<Erro> inserirFMS(@RequestBody FMS u) {
+        return new ResponseEntity<>(new FMSController().salvar(u), HttpStatus.OK);
+    } 
+
+    @DeleteMapping("/fms/apagar/{id}")
+    public ResponseEntity<Erro> apagarFMS(@PathVariable(value = "id") int id) {
+        return new ResponseEntity<>(new FMSController().excluir(id), HttpStatus.OK);
+    }
+
+    @GetMapping("/fms/{id}")
+    public ResponseEntity<Object> buscarFMS(@PathVariable(value = "id") int id) {
+        return new ResponseEntity<>(new FMSController().buscar(id), HttpStatus.OK);
+    }
 }
